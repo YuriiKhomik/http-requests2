@@ -234,8 +234,47 @@
 
 // PAGINATION
 
+// // fetch('https://newsapi.org/v2/everything?q=dogs&apiKey=b41603e50de9421aa47b2028dddacda6').then(r=>r.json()).then(console.log);
+
+// const url = 'https://newsapi.org/v2/everything?q=dogs&language=en&pageSize=20&page=2';
+// const options = {
+//     headers: {
+//         Authorization: 'b41603e50de9421aa47b2028dddacda6'
+//     },
+// };
+
+// fetch(url, options)
+// .then(r=>r.json())
+// .then(console.log);
 
 
+// SHOW MORE
+import NewsApiService from "./news-service"
+
+const refs = {
+    searchForm: document.querySelector('.js-search-form'),
+    articlesContainer: document.querySelector('.js-articles-container'),
+    loadMoreBtn: document.querySelector('[data-action="load-more"]')
+};
+
+const newsApiService = new NewsApiService();
+// console.log(newsApiService)
+
+refs.searchForm.addEventListener('submit', onSearch);
+refs.loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
+
+function onSearch(e) {
+    e.preventDefault();
+
+    newsApiService.query = e.currentTarget.elements.query.value;
+    newsApiService.resetPage();
+    newsApiService.fetchArticles();
+};
+
+
+function onLoadMoreBtnClick(){
+    newsApiService.fetchArticles();
+}
 
 
 

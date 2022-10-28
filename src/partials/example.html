@@ -7,6 +7,7 @@
     <title>Document</title>
   </head>
   <body>
+    <!-- USE FOR AJAX  (AND MAYBE PAGINATION...)-->
     <form class="form-inline-search js-search-form">
       <div class="form-group">
         <input type="text" class="form-control" name="query" />
@@ -14,6 +15,17 @@
 
       <button type="submit" class="btn-primary">search</button>
     </form>
+
+    <ul class="js-articles-container"></ul>
+
+    <button type="button" class="btn-primary" data-action="load-more">
+      <span
+        class="spinner-border, spinner-border-sm spinner is hidden"
+        role="status"
+        aria-hidden="true"
+      ></span>
+      <span class="label">Show more</span>
+    </button>
 
     <div class="js-card-container"></div>
   </body>
