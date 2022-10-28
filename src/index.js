@@ -1,9 +1,8 @@
-import pokemonCardTpi from "./templates/pokemon-card.hbs";
+// import pokemonCardTpi from "./templates/pokemon-card.hbs";
 
-const refs = {
-    cardContainer: document.querySelector('.js-card-container'),
-};
-
+// const refs = {
+//     cardContainer: document.querySelector('.js-card-container'),
+// };
 
 // // AJAX - (асинхронний джаваскрипт хмл) це коли ми з клієнта робимо запит на бекенд, бекенд повертає JSON а ми вже по цьому JSON рендеримо розмітку
 
@@ -114,3 +113,48 @@ const refs = {
 // fetchPokemonById(215)
 // .then(renderPokemonCard)
 // .catch(error => {console.log(error)});
+
+
+
+
+// !!!ВСЕ ПОПЕРЕДНЄ КОНМЕНТУЄМО!!!
+// підключаємо пошук покемона з форми:
+
+import pokemonCardTpi from "./templates/pokemon-card.hbs";
+
+const refs = {
+    cardContainer: document.querySelector('.js-card-container'),
+    searchForm: document.querySelector('.js-search-form')
+};
+
+// при сабміті форми буде викликатися onsearch
+refs.searchForm.addEventListener('submit', onSearch);
+
+function onSearch(e){
+    e.preventDefault();
+
+    // отримуємо посилання на value of input
+    const form = e.currentTarget;
+    const searchQuery = form.elements.query.value
+
+    // викликаємо фетч покемон при сабміті форми
+    fetchPokemonById(searchQuery)
+    .then(renderPokemonCard)
+    .catch(error => {console.log(error)})
+    .finally(()=>{
+        form.reset();
+    });
+};
+
+function fetchPokemonById(pokemonId){
+    return fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+    .then(response=>{ 
+    return response.json();
+});
+};
+
+function renderPokemonCard(pokemon) {
+    const markup = pokemonCardTpi(pokemon);
+    refs.cardContainer.innerHTML = markup;
+};
+
