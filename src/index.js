@@ -249,7 +249,8 @@
 
 
 // SHOW MORE
-import NewsApiService from "./news-service"
+import NewsApiService from "./news-service";
+import articlesTpi from "./templates/articles.hbs";
 
 const refs = {
     searchForm: document.querySelector('.js-search-form'),
@@ -268,13 +269,17 @@ function onSearch(e) {
 
     newsApiService.query = e.currentTarget.elements.query.value;
     newsApiService.resetPage();
-    newsApiService.fetchArticles();
+    newsApiService.fetchArticles().then(appendArticlesMarkup);
 };
 
 
 function onLoadMoreBtnClick(){
-    newsApiService.fetchArticles();
-}
+    newsApiService.fetchArticles().then(appendArticlesMarkup);
+};
+
+function appendArticlesMarkup(articles){
+    refs.articlesContainer.insertAdjacentHTML('beforeend', articlesTpi(articles));
+};
 
 
 
