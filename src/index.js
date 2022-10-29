@@ -268,8 +268,11 @@ function onSearch(e) {
     e.preventDefault();
 
     newsApiService.query = e.currentTarget.elements.query.value;
+    if(newsApiService.query === ''){
+        return alert('Input smth')
+    }
     newsApiService.resetPage();
-    newsApiService.fetchArticles().then(appendArticlesMarkup);
+    newsApiService.fetchArticles().then(articles => {clearArticlesContainer(); appendArticlesMarkup(articles);});;
 };
 
 
@@ -281,5 +284,8 @@ function appendArticlesMarkup(articles){
     refs.articlesContainer.insertAdjacentHTML('beforeend', articlesTpi(articles));
 };
 
+function clearArticlesContainer(){
+    refs.articlesContainer.innerHTML = '';
+}
 
 
