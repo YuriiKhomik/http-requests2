@@ -248,44 +248,42 @@
 // .then(console.log);
 
 
-// SHOW MORE
-import NewsApiService from "./news-service";
-import articlesTpi from "./templates/articles.hbs";
+// // SHOW MORE
+// import NewsApiService from "./news-service";
+// import articlesTpi from "./templates/articles.hbs";
 
-const refs = {
-    searchForm: document.querySelector('.js-search-form'),
-    articlesContainer: document.querySelector('.js-articles-container'),
-    loadMoreBtn: document.querySelector('[data-action="load-more"]')
-};
+// const refs = {
+//     searchForm: document.querySelector('.js-search-form'),
+//     articlesContainer: document.querySelector('.js-articles-container'),
+//     loadMoreBtn: document.querySelector('[data-action="load-more"]')
+// };
 
-const newsApiService = new NewsApiService();
-// console.log(newsApiService)
+// const newsApiService = new NewsApiService();
+// // console.log(newsApiService)
 
-refs.searchForm.addEventListener('submit', onSearch);
-refs.loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
+// refs.searchForm.addEventListener('submit', onSearch);
+// refs.loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
 
-function onSearch(e) {
-    e.preventDefault();
+// function onSearch(e) {
+//     e.preventDefault();
 
-    newsApiService.query = e.currentTarget.elements.query.value;
-    if(newsApiService.query === ''){
-        return alert('Input smth')
-    }
-    newsApiService.resetPage();
-    newsApiService.fetchArticles().then(articles => {clearArticlesContainer(); appendArticlesMarkup(articles);});;
-};
-
-
-function onLoadMoreBtnClick(){
-    newsApiService.fetchArticles().then(appendArticlesMarkup);
-};
-
-function appendArticlesMarkup(articles){
-    refs.articlesContainer.insertAdjacentHTML('beforeend', articlesTpi(articles));
-};
-
-function clearArticlesContainer(){
-    refs.articlesContainer.innerHTML = '';
-}
+//     newsApiService.query = e.currentTarget.elements.query.value;
+//     if(newsApiService.query === ''){
+//         return alert('Input smth')
+//     }
+//     newsApiService.resetPage();
+//     newsApiService.fetchArticles().then(articles => {clearArticlesContainer(); appendArticlesMarkup(articles);});;
+// };
 
 
+// function onLoadMoreBtnClick(){
+//     newsApiService.fetchArticles().then(appendArticlesMarkup);
+// };
+
+// function appendArticlesMarkup(articles){
+//     refs.articlesContainer.insertAdjacentHTML('beforeend', articlesTpi(articles));
+// };
+
+// function clearArticlesContainer(){
+//     refs.articlesContainer.innerHTML = '';
+// }

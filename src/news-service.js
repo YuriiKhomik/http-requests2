@@ -43,4 +43,4 @@ export default class NewsApiService {
     set query(newQuery){
         this.searchQuery = newQuery;
     }
-}
+}  

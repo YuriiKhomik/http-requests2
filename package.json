@@ -5,7 +5,8 @@
   "homepage": "https://yuriikhomik.github.io/http-requests2",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /http-requests2/"
+    "build": "parcel build src/*.html --public-url /http-requests2/",
+    "server": "json-server --watch db.json -p4040 -d 300"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
     "url": "https://github.com/goitacademy/parcel-project-template/issues"
   },
   "dependencies": {
+    "json-server": "^0.17.0",
     "modern-normalize": "^1.1.0"
   },
   "devDependencies": {
